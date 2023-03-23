@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  creationTimestamp: null
+  name: multistagesvc
+spec:
+  gateways:
+  - public-gateway.istio-system
+  - mesh
+  hosts:
+  - multistagesvc.multistage-pvs.svc.cluster.local
+  - multistagesvc
+  http:
+  - route:
+    - destination:
+        host: multistagesvc-canary.multistage-pvs.svc.cluster.local
+    - destination:
+        host: multistagesvc-primary.multistage-pvs.svc.cluster.local
+      weight: 100

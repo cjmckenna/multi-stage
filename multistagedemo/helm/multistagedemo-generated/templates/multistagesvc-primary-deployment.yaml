@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: multistagesvc
+  name: multistagesvc-primary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multistagesvc-primary
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: multistagesvc-primary
+    spec:
+      containers:
+      - env:
+        - name: DT_CUSTOM_PROP
+          value: keptn_project=multistage keptn_service=multistagedemo keptn_stage=pvs
+            keptn_deployment=primary
+        - name: KEPTN_PROJECT
+          value: multistage
+        - name: KEPTN_STAGE
+          value: pvs
+        - name: KEPTN_SERVICE
+          value: multistagedemo
+        - name: KEPTN_DEPLOYMENT
+          value: canary
+        image: core.harbor.domain/multistagedemo/multistage:1.0
+        imagePullPolicy: Always
+        name: multistagesvc
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+status: {}

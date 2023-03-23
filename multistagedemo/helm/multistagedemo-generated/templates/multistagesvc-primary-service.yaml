@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: multistagesvc-primary
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: multistagesvc-primary
+  type: LoadBalancer
+status:
+  loadBalancer: {}
