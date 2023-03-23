@@ -14,6 +14,6 @@ spec:
   - route:
     - destination:
         host: multistagesvc-canary.multistage-pvs.svc.cluster.local
-      weight: 100
     - destination:
         host: multistagesvc-primary.multistage-pvs.svc.cluster.local
+      weight: 100
