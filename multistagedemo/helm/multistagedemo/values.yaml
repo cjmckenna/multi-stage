@@ -1,2 +1,2 @@
-image: core.harbor.domain/multistagedemo/multistage:1.1
+image: core.harbor.domain/multistagedemo/multistage:1.2
 replicaCount: 1
